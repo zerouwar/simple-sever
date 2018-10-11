@@ -1,8 +1,8 @@
-name := "simpleServer"
+name := "simple-server"
 
 version := "1.0"
 
-lazy val `simpleserver` = (project in file(".")).enablePlugins(PlayScala)
+lazy val `simple-server` = (project in file(".")).enablePlugins(PlayScala)
 
 resolvers += "scalaz-bintray" at "https://dl.bintray.com/scalaz/releases"
 

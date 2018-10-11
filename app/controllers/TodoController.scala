@@ -28,15 +28,16 @@ class TodoController @Inject()(cc: ControllerComponents, todoService: TodoServic
   /**
     * 完成一个todo
     */
-  def done = Action(parse.json).async { request =>
+  def done(id: Int) = Action(parse.json).async { request =>
     val json: JsValue = Json.parse(request.body.toString())
-    val id = json("id").as[Int]
+    val remark = json("remark").as[String]
+
     val bo = todoService.toBO(id)
     if (bo isEmpty) {
-      Future.successful(BadRequest("need id"))
+      Future.successful(BadRequest("need remark"))
     }
     else {
-      bo.get.done().map(f => Created(Json.toJson(f)))
+      bo.get.done(remark).map(f => Created(Json.toJson(f)))
     }
   }
 
